@@ -3,19 +3,13 @@
 You can use the [editor on GitHub](https://github.com/WuHaoyang-WHY/15618-Lock-Free-Queue/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
 
 
-## Project Summary
-## Background
-## Challenge
-## Resoures
-## Goals and Deliverables
-## Platform Choice
-## Schedule
-
-
-
-
-
-
+### Project Summary
+### Background
+### Challenge
+### Resoures
+### Goals and Deliverables
+### Platform Choice
+### Schedule
 
 
 ```markdown

@@ -3,14 +3,9 @@ Author:
 Haoyang Wu(haoyang2@andrew.cmu.edu)  
 Yutong Zhu(yutongz3@andrew.cmu.edu)
 
+## Process
 
-### Project Summary
-### Background
-### Challenge
-### Resoures
-### Goals and Deliverables
-### Platform Choice
-### Schedule
+
 
 
 ```markdown

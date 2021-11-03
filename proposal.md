@@ -10,6 +10,9 @@ In this project we plan to implement a concurrent lock-free queue using CAS. We 
 ## Background
 There are many problems associated with locks in shared data structures, such as overheads in high-frequency synchronisations. Rather than achieving concurrent operations through mutual exclusion, lock-free data structures rely on synchronization primitives such as compare-and-swap (CAS) while ensuring that no process is forced to wait for another process to complete a queue operation.   
 
+FIFO Queue is a widely used data structure for parallel scenarios such as work assignment, which we discussed in class. A basic queue supports enqueue and dequeue. However, things can get tricky when we have multiple producers and consumers accessing shared resources concurrently.
+
+
 ## Challenge
 The challenge in implementing a lock-free queue using CAS will be to use CAS calls to test whether the update is safe and the introduction of ABA problems.  
 
@@ -35,6 +38,9 @@ If time allows, we hope to evaluate the performance of our lock-free queue more 
 
 ### If work goes slow
 If we are behind schedule, we will only compare performance with queue of coarse granularity locks.
+
+### Deliverables
+We will conduct performance analysis and produce speedup graphs between the different implementations of queue data structure. We expect that the lock-free implementation will have better performances than other implementations.  We will also investigate how the performance of our lock-free queue changes under different parallel scenarios.
 
 ## Platform Choice
 We will be using GHC cluster machines for development and performance analysis because we need CPUs that support CAS operation. Also, GHC machines provides hardware support that we can utilize for testing high contention scenarios. We will use C++ for implementing concurrent queues. As for the evaluation analysis, it's possible that we will use script language like Python because it's more efficient in plotting and analytical work.  

@@ -1,6 +1,7 @@
-# Lock-free Queue
-
-You can use the [editor on GitHub](https://github.com/WuHaoyang-WHY/15618-Lock-Free-Queue/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+## Lock-free Queue Using CAS
+Author:
+Haoyang Wu(haoyang2@andrew.cmu.edu)
+Yutong Zhu(yutongz3@andrew.cmu.edu)
 
 
 ### Project Summary

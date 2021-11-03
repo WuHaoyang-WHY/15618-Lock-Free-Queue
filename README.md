@@ -1,6 +1,6 @@
 ## Lock-free Queue Using CAS
 Author:
-Haoyang Wu(haoyang2@andrew.cmu.edu)
+Haoyang Wu(haoyang2@andrew.cmu.edu)  
 Yutong Zhu(yutongz3@andrew.cmu.edu)
 
 

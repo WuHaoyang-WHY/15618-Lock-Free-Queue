@@ -3,8 +3,9 @@
 //
 
 #include "MyQueues/lock_free_queue.hpp"
+#include <gtest/gtest.h>
 
 int main() {
     lock_free_queue<int>* lockFreeQueue = new lock_free_queue<int>();
-
+    
 }

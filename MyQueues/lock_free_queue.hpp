@@ -8,6 +8,15 @@ template <typename T>
 
 class lock_free_queue { 
 
+    lock_free_queue() {
+
+
+    }
+
+    ~lock_free_queue() {
+
+    }
+
 private:
     struct Node
     {
@@ -30,7 +39,7 @@ public:
         Node* oldTail;
         do {
             oldTail = tail.load();
-        } while (!oldTail->next.compare_exchange_weak(nullptr, newNode));   // insert new node to tail with CAS.
+        } while (!oldTail->next.load().compare_exchange_weak(nullptr, newNode));   // insert new node to tail with CAS.
 
         tail->compare_exchange_weak(oldTail, newNode);  // update tail to newNode if newNode is still tail with CAS.
     }

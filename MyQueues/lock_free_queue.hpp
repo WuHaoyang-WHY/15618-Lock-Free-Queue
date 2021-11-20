@@ -59,7 +59,7 @@ public:
         Node* nullLoad;
         do {
             oldTail = tail.load();
-            printf("%s %s\n", typeid(oldTail).name(), typeid(newNode).name());
+//            printf("%s %s\n", typeid(oldTail).name(), typeid(newNode).name());
             nullLoad = nullnode.load();
 
         } while (!oldTail->next.compare_exchange_weak(nullLoad, newNode,
@@ -81,7 +81,7 @@ public:
         Node* oldHead;
         do {
             oldHead = head.load();
-            printf("%s %s\n", typeid(oldHead).name(), typeid(oldHead->next).name());
+//            printf("%s %s\n", typeid(oldHead).name(), typeid(oldHead->next).name());
 
             if (!oldHead->next || oldHead->next == nullnode) {
                 return nullptr;

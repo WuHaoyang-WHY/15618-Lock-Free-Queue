@@ -3,6 +3,7 @@
 
 #include <atomic>
 #include <cstdlib>
+#include <typeinfo>
 
 using namespace std;
 template <typename T>
@@ -11,7 +12,13 @@ class lock_free_queue {
 
 public:
     lock_free_queue() {
-        head = tail = (Node *) malloc(sizeof(Node));    // dummy node to start with.
+        nullnode.store(new Node());
+        Node* dummy = new Node(nullptr, nullnode);
+//        dummy->next = nullnode;
+        head.store(dummy);  // dummy node to start with.
+        tail.store(dummy);
+
+        size = 0;
     }
 
     ~lock_free_queue() {
@@ -38,20 +45,31 @@ private:
     /**
      * head always points to a dummy node. The real queue starts from head->next
      */
-    atomic<Node *> head, tail;
+    atomic<Node *> head;
+    atomic<Node *> tail;
+    atomic<Node *> nullnode;
+    atomic<int> size;
 
 public:
     
     void push(T* val) {
-        Node* newNode = (Node *) malloc(sizeof(Node));
-        newNode->val = val;
+        atomic<Node*> newNode = new Node(val, nullnode);
 
         Node* oldTail;
+        Node* nullLoad;
         do {
             oldTail = tail.load();
-        } while (!oldTail->next.load().compare_exchange_weak(nullptr, newNode));   // insert new node to tail with CAS.
+            printf("%s %s\n", typeid(oldTail).name(), typeid(newNode).name());
+            nullLoad = nullnode.load();
 
-        tail->compare_exchange_weak(oldTail, newNode);  // update tail to newNode if newNode is still tail with CAS.
+        } while (!oldTail->next.compare_exchange_weak(nullLoad, newNode,
+                                                      memory_order_release, memory_order_relaxed));
+
+        // update tail to newNode if newNode is still tail with CAS.
+        tail.compare_exchange_weak(oldTail, newNode,
+                                    memory_order_release, memory_order_relaxed);
+
+        size.fetch_add(1);
     }
 
     /**
@@ -63,16 +81,22 @@ public:
         Node* oldHead;
         do {
             oldHead = head.load();
-            if (!oldHead->next) {
+            printf("%s %s\n", typeid(oldHead).name(), typeid(oldHead->next).name());
+
+            if (!oldHead->next || oldHead->next == nullnode) {
                 return nullptr;
             }
-        } while (head->compare_exchange_weak(oldHead, oldHead->next));
+        } while (!head.compare_exchange_weak(oldHead, oldHead->next,
+                                             memory_order_release, memory_order_relaxed));
 
-        T* returnVal = oldHead->next->val;
-        // free oldHead
-        free(oldHead);
+        T* returnVal = oldHead->next.load()->val;
 
+        size.fetch_sub(1);
         return returnVal;
+    }
+
+    int getSize() {
+        return size;
     }
 
 };

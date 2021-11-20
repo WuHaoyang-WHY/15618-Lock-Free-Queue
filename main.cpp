@@ -6,6 +6,10 @@
 #include <gtest/gtest.h>
 
 int main() {
-    lock_free_queue<int>* lockFreeQueue = new lock_free_queue<int>();
-    
+    lock_free_queue<int> lockFreeQueue;
+    lockFreeQueue.push((int*) 1);
+    lockFreeQueue.poll();
+
+    printf("%d", lockFreeQueue.getSize());
+    return 0;
 }

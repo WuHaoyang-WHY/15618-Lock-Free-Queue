@@ -2,15 +2,15 @@
 #define _LOCK_FREE_QUEUE_H
 
 #include <atomic>
+#include <stdlib.h>
 
 using namespace std;
 template <typename T>
 
-class lock_free_queue { 
+class lock_free_queue {
 
+public:
     lock_free_queue() {
-
-
     }
 
     ~lock_free_queue() {
@@ -33,9 +33,8 @@ private:
 
 public:
     
-    // TODO: add if-else to fix scenerio of when queue is empty(oldTail->next would cause NullPTRException)
     void push(T* val) {
-        Node* newNode = new Node(val);
+        Node* newNode = (Node *) malloc(sizeof(Node));
         Node* oldTail;
         do {
             oldTail = tail.load();
@@ -53,9 +52,16 @@ public:
         Node* oldHead;
         do {
             oldHead = head.load();
-        } while (oldHead && !head.compare_exchange_weak(oldHead, oldHead->next));
-        
-        return oldHead? oldHead->val :nullptr;
+            if (!oldHead->next) {
+                return nullptr;
+            }
+        } while (head->compare_exchange_weak(oldHead, oldHead->next));
+
+        T* returnVal = oldHead->next->val;
+        // free oldHead
+        free(oldHead);
+
+        return returnVal;
     }
     
 

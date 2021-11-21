@@ -6,9 +6,9 @@
 #include "gtest/gtest.h"
 #include "algorithm"
 #include "vector"
-#include "cstdlib"
 #include "thread"
 #include "random"
+#include "time.h"
 
 class CASQueueTest : public ::testing::Test {
 protected:
@@ -20,25 +20,52 @@ protected:
     }
 
     // void TearDown() override {}
-    default_random_engine e;
+//    static default_random_engine e;
     lock_free_queue<int> q0_;
     lock_free_queue<int> q1_;
     lock_free_queue<int> q2_;
     std::vector<std::thread> consumerThreads;
     std::vector<std::thread> producerThreads;
 
-    int* getRandomNumber() {
-        int number = e()%100;
+    static int* getRandomNumber() {
+        srand((unsigned)time(0));
+        int number = (rand()%100);
 
         return reinterpret_cast<int *>(number);
     }
 
-    void producerTask(lock_free_queue<int>* queue) {
+    static void producerTask(lock_free_queue<int>* queue) {
         queue->push(getRandomNumber());
     }
 
-    void consumerTest(lock_free_queue<int>* queue) {
+    static void consumerTask(lock_free_queue<int>* queue) {
         queue->poll();
+    }
+
+    void initProducers(int num, lock_free_queue<int>* queue) {
+        for (int i = 0; i < num; i ++) {
+            producerThreads.emplace_back(producerTask, queue);
+        }
+    }
+
+    void initConsumers(int num, lock_free_queue<int>* queue) {
+        for (int i = 0; i < num; i ++) {
+            consumerThreads.emplace_back(consumerTask, queue);
+        }
+    }
+
+    void run(lock_free_queue<int>* queue, int consumerNum, int producerNum) {
+        initProducers(producerNum, queue);
+        initConsumers(consumerNum, queue);
+
+        for (int i = 0; i < producerNum; i ++) {
+            producerThreads[i].join();
+        }
+        for (int i = 0; i < consumerNum; i ++) {
+            consumerThreads[i].join();
+        }
+
+        EXPECT_EQ(queue->getSize(), max(producerNum - consumerNum, 0));
     }
 
 };
@@ -52,7 +79,20 @@ TEST_F(CASQueueTest, TestEmptyQueue) {
     EXPECT_EQ(poped, reinterpret_cast<int *>(1));
 }
 
+TEST_F(CASQueueTest, TestMultiThreadSameAmount) {
+    lock_free_queue<int> queue;
+    run(&queue, 100, 100);
+}
 
+TEST_F(CASQueueTest, TestMultiThreadMoreProducer) {
+    lock_free_queue<int> queue;
+    run(&queue, 100, 200);
+}
+
+TEST_F(CASQueueTest, TestMultiThreadMoreConsumer) {
+    lock_free_queue<int> queue;
+    run(&queue, 200, 200);
+}
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

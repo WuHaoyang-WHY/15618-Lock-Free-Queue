@@ -4,6 +4,8 @@ Haoyang Wu(haoyang2@andrew.cmu.edu)
 Yutong Zhu(yutongz3@andrew.cmu.edu)
 
 ## Process
+[Project Website](https://wuhaoyang-why.github.io/15618-Lock-Free-Queue/)
+
 [Proposal Website](https://wuhaoyang-why.github.io/15618-Lock-Free-Queue/proposal)  
 [Proposal PDF](https://github.com/WuHaoyang-WHY/15618-Lock-Free-Queue/blob/main/reportPDFs/Proposal__2_.pdf)
 

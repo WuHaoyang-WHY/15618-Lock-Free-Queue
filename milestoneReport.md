@@ -5,16 +5,18 @@ Haoyang Wu (haoyang2)
 November 20, 2021  
 
 Project URL: https://github.com/WuHaoyang-WHY/15618-Lock-Free-Queue
+MileStone Report URL:
 
 ## Schedule
+  
 | Week | Task |Progress |  
-| --- | --- | --- |
-Nov 5 - Nov 12|Read paper and study implementation of lock free queue|Done
-Nov 13 - Nov 19|Implement lock free queue and unit tests|Done
-Nov 20 - Nov 23|Implement lock based queue with coarse-granularity lock|In progress(Haoyang Wu)
-Nov 23 - Nov 26|Implement lock based queue with fine-granularity lock|In progress(Yutong Zhu)
-Nov 27 - Dec 3|Evaluate and analyse performance|TODO
-Dec 4 - Dec 10|Finish final report and poster|TODO
+| --- | --- | --- |  
+| Nov 5 - Nov 12|Read paper and study implementation of lock free queue|Done|
+| Nov 13 - Nov 19|Implement lock free queue and unit tests|Done|
+| Nov 20 - Nov 26|Implement lock based queue with coarse-granularity lock|In progress(Haoyang Wu)|
+|               |Implement lock based queue with fine-granularity lock|In progress(Yutong Zhu)|
+|Nov 27 - Dec 3|Evaluate and analyse performance|TODO|
+|Dec 4 - Dec 10|Finish final report and poster|TODO|
 
 ## Work Completed
 We finished the implementation of the lock-free queue using CAS based on [Implementing Lock-Free Queues by John D. Valois](https://people.cs.pitt.edu/~jacklange/teaching/cs2510-f12/papers/implementing_lock_free.pdf) and we also finished the unit tests with multi-thread using google test module. 

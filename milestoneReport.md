@@ -7,8 +7,8 @@ November 20, 2021
 Project URL: https://github.com/WuHaoyang-WHY/15618-Lock-Free-Queue
 
 ## Schedule
-Week|Task|Progress  
---|--|--  
+| Week | Task |Progress |  
+| --- | --- | --- |
 Nov 5 - Nov 12|Read paper and study implementation of lock free queue|Done
 Nov 13 - Nov 19|Implement lock free queue and unit tests|Done
 Nov 20 - Nov 23|Implement lock based queue with coarse-granularity lock|In progress(Haoyang Wu)

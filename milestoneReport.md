@@ -4,8 +4,8 @@ Haoyang Wu (haoyang2)
 
 November 20, 2021  
 
-Project URL: https://github.com/WuHaoyang-WHY/15618-Lock-Free-Queue
-MileStone Report URL:
+Project URL: https://github.com/WuHaoyang-WHY/15618-Lock-Free-Queue  
+MileStone Report URL: https://wuhaoyang-why.github.io/15618-Lock-Free-Queue/milestoneReport
 
 ## Schedule
   

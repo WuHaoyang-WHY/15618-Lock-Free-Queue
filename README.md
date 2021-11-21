@@ -13,6 +13,7 @@ Yutong Zhu(yutongz3@andrew.cmu.edu)
 [Milestone PDF]
 
 ## Schedule (updating)
+  
 | Week | Task |Progress |  
 | --- | --- | --- |  
 | Nov 5 - Nov 12|Read paper and study implementation of lock free queue|Done|

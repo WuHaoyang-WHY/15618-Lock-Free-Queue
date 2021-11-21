@@ -46,11 +46,11 @@ We will conduct performance analysis and produce speedup graphs between the diff
 We will be using GHC cluster machines for development and performance analysis because we need CPUs that support CAS operation. Also, GHC machines provides hardware support that we can utilize for testing high contention scenarios. We will use C++ for implementing concurrent queues. As for the evaluation analysis, it's possible that we will use script language like Python because it's more efficient in plotting and analytical work.  
 
 ## Schedule
-Week|Task  
---|--  
-Nov 5 - Nov 12|Read paper and study implementation of lock free queue
-Nov 13 - Nov 19|Implement lock free queue and unit tests
-Nov 20 - Nov 26|Implement lock based queue with different granularity
-Nov 27 - Dec 3|Evaluate and analyse performance 
-Dec 4 - Dec 10|Finish final report and poster
+|Week|Task|
+|--|--|  
+|Nov 5 - Nov 12|Read paper and study implementation of lock free queue|
+|Nov 13 - Nov 19|Implement lock free queue and unit tests|
+|Nov 20 - Nov 26|Implement lock based queue with different granularity|
+|Nov 27 - Dec 3|Evaluate and analyse performance |
+|Dec 4 - Dec 10|Finish final report and poster|
 

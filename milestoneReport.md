@@ -25,7 +25,7 @@ We are working on performance evaluation using google benchmark. We are also wor
 ## Goals
 Overall we think we are making progress according to our schedule. 
 
-Our goals are implementing the lock-free queue, testing its correctness and also evaluating its performance along with other concurrent queue solutions (e.g., traditional lock techniques).
+Our plans are still to implement the lock-free queue, test its correctness and also evaluate its performance along with other concurrent queue solutions (e.g., traditional lock techniques).
 
 We still plan to achieve the following goals:
 

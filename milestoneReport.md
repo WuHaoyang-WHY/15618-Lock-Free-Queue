@@ -4,8 +4,8 @@ Haoyang Wu (haoyang2)
 
 November 20, 2021  
 
-Project URL: https://github.com/WuHaoyang-WHY/15618-Lock-Free-Queue  
-MileStone Report URL: https://wuhaoyang-why.github.io/15618-Lock-Free-Queue/milestoneReport
+[Project GITHUB](https://github.com/WuHaoyang-WHY/15618-Lock-Free-Queue)  
+[MileStone Report URL](https://wuhaoyang-why.github.io/15618-Lock-Free-Queue/milestoneReport)
 
 ## Schedule
   
@@ -25,7 +25,7 @@ We are working on performance evaluation using google benchmark. We are also wor
 ## Goals
 Overall we think we are making progress according to our schedule. 
 
-Our goals are implementing the lock-free queue, testing its correctness and also evaluating its performance along with other concurrent queue solutions (e.g., traditional lock techniques).
+Our plans are still to implement the lock-free queue, test its correctness and also evaluate its performance along with other concurrent queue solutions (e.g., traditional lock techniques).
 
 We still plan to achieve the following goals:
 

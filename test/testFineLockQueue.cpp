@@ -1,8 +1,8 @@
 //
-// Created by Haoyang Wu on 2021/11/19.
+// Created by Haoyang Wu on 2021/12/1
 //
 
-#include <coarse_lock_queue.hpp>
+#include <fine_lock_queue.hpp>
 #include "gtest/gtest.h"
 #include "algorithm"
 #include "vector"
@@ -10,8 +10,7 @@
 #include "time.h"
 
 
-
-class CoarseLockQueueTest : public ::testing::Test {
+class FineLockQueueTest : public ::testing::Test {
 protected:
     void SetUp() override {
         q1_.push(1);
@@ -20,9 +19,9 @@ protected:
         q2_.push(3);
     }
 
-    coarse_lock_queue<int> q0_;
-    coarse_lock_queue<int> q1_;
-    coarse_lock_queue<int> q2_;
+    fine_lock_queue<int> q0_;
+    fine_lock_queue<int> q1_;
+    fine_lock_queue<int> q2_;
     std::vector<std::thread> consumerThreads;
     std::vector<std::thread> producerThreads;
 
@@ -33,27 +32,27 @@ protected:
         return number;
     }
 
-    static void producerTask(coarse_lock_queue<int>* queue) {
+    static void producerTask(fine_lock_queue<int>* queue) {
         queue->push(getRandomNumber());
     }
 
-    static void consumerTask(coarse_lock_queue<int>* queue) {
+    static void consumerTask(fine_lock_queue<int>* queue) {
         queue->poll();
     }
 
-    void initProducers(int num, coarse_lock_queue<int>* queue) {
+    void initProducers(int num, fine_lock_queue<int>* queue) {
         for (int i = 0; i < num; i ++) {
             producerThreads.emplace_back(producerTask, queue);
         }
     }
 
-    void initConsumers(int num, coarse_lock_queue<int>* queue) {
+    void initConsumers(int num, fine_lock_queue<int>* queue) {
         for (int i = 0; i < num; i ++) {
             consumerThreads.emplace_back(consumerTask, queue);
         }
     }
 
-    void run(coarse_lock_queue<int>* queue, int consumerNum, int producerNum) {
+    void run(fine_lock_queue<int>* queue, int consumerNum, int producerNum) {
         initProducers(producerNum, queue);
         initConsumers(consumerNum, queue);
 
@@ -69,7 +68,7 @@ protected:
 
 };
 
-TEST_F(CoarseLockQueueTest, TestEmptyQueue) {
+TEST_F(FineLockQueueTest, TestEmptyQueue) {
     EXPECT_EQ(q0_.getSize(), 0);
     q0_.push(1);
     EXPECT_EQ(q0_.getSize(), 1);
@@ -78,22 +77,22 @@ TEST_F(CoarseLockQueueTest, TestEmptyQueue) {
     EXPECT_EQ(poped, 1);
 }
 
-TEST_F(CoarseLockQueueTest, TestMultiThreadSameAmount) {
-    coarse_lock_queue<int> queue;
+TEST_F(FineLockQueueTest, TestMultiThreadSameAmount) {
+    fine_lock_queue<int> queue;
     run(&queue, 100, 100);
 }
 
-TEST_F(CoarseLockQueueTest, TestMultiThreadMoreProducer) {
-    coarse_lock_queue<int> queue;
+TEST_F(FineLockQueueTest, TestMultiThreadMoreProducer) {
+    fine_lock_queue<int> queue;
     run(&queue, 100, 200);
 }
 
-TEST_F(CoarseLockQueueTest, TestMultiThreadMoreConsumer) {
-    coarse_lock_queue<int> queue;
+TEST_F(FineLockQueueTest, TestMultiThreadMoreConsumer) {
+    fine_lock_queue<int> queue;
     run(&queue, 200, 200);
 }
 
-//int main(int argc, char **argv) {
-//    ::testing::InitGoogleTest(&argc, argv);
-//    return RUN_ALL_TESTS();
-//}
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}

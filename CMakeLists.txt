@@ -12,11 +12,11 @@ add_subdirectory(lib/googletest)
 include_directories(${gtest_SOURCE_DIR}/include)
 include_directories(${gmock_SOURCE_DIR}/include)
 
-add_executable(unittest test/testCASQueue.cpp test/testCourseLockQueue.cpp)
+add_executable(unittest test/testCASQueue.cpp test/testCourseLockQueue.cpp test/testFineLockQueue.cpp)
 target_link_libraries(unittest gtest gtest_main)
 
 add_executable(15618_Lock_Free_Queue
-        MyQueues/lock_free_queue.hpp main.cpp MyQueues/coarse_lock_queue.hpp MyQueues/fine_lock_queue.h)
+        MyQueues/lock_free_queue.hpp main.cpp MyQueues/coarse_lock_queue.hpp MyQueues/fine_lock_queue.hpp)
 
 
 set_target_properties(15618_Lock_Free_Queue PROPERTIES LINKER_LANGUAGE CXX)

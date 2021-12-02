@@ -1,0 +1,80 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../MyQueues/coarse_lock_queue.hpp
+mutex
+-
+atomic
+-
+queue
+-
+optional
+-
+
+../MyQueues/fine_lock_queue.hpp
+mutex
+-
+atomic
+-
+queue
+-
+optional
+-
+
+../MyQueues/lock_free_queue.hpp
+atomic
+-
+cstdlib
+-
+typeinfo
+-
+
+../lib/benchmark/include/benchmark/benchmark.h
+stdint.h
+-
+algorithm
+-
+cassert
+-
+cstddef
+-
+iosfwd
+-
+limits
+-
+map
+-
+set
+-
+string
+-
+utility
+-
+vector
+-
+atomic
+-
+initializer_list
+-
+type_traits
+-
+utility
+-
+intrin.h
+-
+
+/Users/haoyangwu/Desktop/cmu/coursework/2021fall/15618-Parallel Computing/15618-Lock-Free-Queue/performance/performance_analysis.cpp
+benchmark/benchmark.h
+/Users/haoyangwu/Desktop/cmu/coursework/2021fall/15618-Parallel Computing/15618-Lock-Free-Queue/performance/benchmark/benchmark.h
+coarse_lock_queue.hpp
+/Users/haoyangwu/Desktop/cmu/coursework/2021fall/15618-Parallel Computing/15618-Lock-Free-Queue/performance/coarse_lock_queue.hpp
+fine_lock_queue.hpp
+/Users/haoyangwu/Desktop/cmu/coursework/2021fall/15618-Parallel Computing/15618-Lock-Free-Queue/performance/fine_lock_queue.hpp
+lock_free_queue.hpp
+/Users/haoyangwu/Desktop/cmu/coursework/2021fall/15618-Parallel Computing/15618-Lock-Free-Queue/performance/lock_free_queue.hpp
+

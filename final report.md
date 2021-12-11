@@ -1,8 +1,6 @@
 # Concurrent Lock-free Queue
 Haoyang Wu, Yutong Zhu  
 
-https://github.com/WuHaoyang-WHY/15618-Lock-Free-Queue  
-
 ## 1 Summary
 In this final project we implemented a concurrent lock-free FIFO queue using the atomic compare-and-swap (CAS). We evaluated the performance of our lock-free implementation on GHC machines by comparing it with two other implementations of locked queues of different granularity.
 ## 2 Background
@@ -27,7 +25,7 @@ Both the fine-lock and coarse-lock queues are implemented using mutex. The coars
 To evaluate performance we use third-party frameworks Google Benchmark to analyse the performance of different implementations of concurrent queue. In Google Benchmark’s multithreaded test, it is guaranteed that none of the threads will start until all have reached the start of the benchmark loop, and all will have finished before any thread exits the benchmark loop. The number of iterations that the benchmarked code will be run is determined dynamically to ensure that the ultimate result is statistically stable.    
 
 Since our benchmarked code does not use threads internally, Google benchmark’s CPU Timer provides a good enough measurement for latency comparisons. We use the operation throughput (items pushed and popped per second) which is calculated based on CPU time, as the main measurement of performance for each of our implementations.
-### 4.1 Performance Analyses of Push and Push Operations
+## 4.1 Performance Analyses of Push and Push Operations
 ### 4.1.1 Performance Comparison between Different Implementations
 We first look at the performance of push and pop operations alone. To measure the throughput of pop, we first pause timing, insert a number of elements, then start timing, and pop all these elements out.   
 

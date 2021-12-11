@@ -12,6 +12,8 @@ Yutong Zhu(yutongz3@andrew.cmu.edu)
 [Milestone Website](https://wuhaoyang-why.github.io/15618-Lock-Free-Queue/milestoneReport)  
 [Milestone PDF](https://github.com/WuHaoyang-WHY/15618-Lock-Free-Queue/blob/main/reportPDFs/Final%20Project%20Milestone%20Report%20(1).pdf)
 
+[Final Report Website](https://wuhaoyang-why.github.io/15618-Lock-Free-Queue/final%20report)
+
 ## Schedule
   
 | Week | Task |Progress |  
